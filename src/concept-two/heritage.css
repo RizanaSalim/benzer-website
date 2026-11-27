@@ -1,0 +1,97 @@
+/* ==========================================================
+   Concept 02 — Modern Heritage
+   Tokens & component classes. Imported from src/index.css so
+   Tailwind generates utilities (bg-cream, text-espresso, …).
+   Scoped visual rules live under html[data-concept="two"].
+   ========================================================== */
+
+@theme {
+  --color-cream: #f5f0e7;
+  --color-espresso: #30251f;
+  --color-brass: #a88956;
+  --color-brass-deep: #846a3e; /* AA-contrast brass for small text on cream */
+  --color-taupe: #b8aa98;
+  --color-paper: #fffcf7;
+
+  --font-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --font-grotesk: "Jost", "Futura", "Helvetica Neue", Arial, sans-serif;
+}
+
+html[data-concept="two"] {
+  scroll-padding-top: 4.5rem;
+}
+
+html[data-concept="two"] body {
+  background-color: var(--color-cream);
+  color: var(--color-espresso);
+  font-family: var(--font-grotesk);
+}
+
+html[data-concept="two"] ::selection {
+  background: var(--color-espresso);
+  color: var(--color-cream);
+}
+
+html[data-concept="two"] :focus-visible {
+  outline: 1px solid var(--color-espresso);
+  outline-offset: 4px;
+}
+
+@layer components {
+  .h-eyebrow {
+    font-family: var(--font-grotesk);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-brass-deep);
+  }
+
+  /* Underline that draws in from the left */
+  .h-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 3px;
+    transition: background-size 0.6s var(--ease-luxe), color 0.4s ease;
+  }
+  .h-link:hover,
+  .h-link:focus-visible,
+  .group:hover .h-link {
+    background-size: 100% 1px;
+  }
+
+  /* Persistent hairline underline that thickens subtly on hover */
+  .h-link-static {
+    border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+    padding-bottom: 4px;
+    transition: border-color 0.4s ease, color 0.4s ease;
+  }
+  .h-link-static:hover,
+  .h-link-static:focus-visible {
+    border-color: currentColor;
+  }
+
+  /* Heritage arch frame — echoes Indian architectural arches */
+  .h-arch {
+    border-top-left-radius: 999px;
+    border-top-right-radius: 999px;
+  }
+
+  /* Paper texture for soft-white surfaces */
+  .h-paper {
+    background-color: var(--color-paper);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.19 0 0 0 0 0.15 0 0 0 0 0.12 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Drop cap for editorial paragraphs */
+  .h-dropcap::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-size: 4.25rem;
+    line-height: 0.85;
+    padding: 0.35rem 0.75rem 0 0;
+    color: var(--color-brass);
+  }
+}
